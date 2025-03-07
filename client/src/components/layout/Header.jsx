@@ -6,7 +6,7 @@ import {Menu as MenuIcon,Search as SearchIcon,Add as AddIcon , Group as  GroupIc
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { lazy } from 'react'
-const searchDialog = lazy(() => import('../specific/Search'))
+const SearchDialog = lazy(() => import('../specific/Search'))
 
 const NotificationDialog = lazy(() => import('../specific/Notifications'))
 const NewGroupDialog = lazy(() => import('../dialogs/NewGroup'))
@@ -76,7 +76,7 @@ const Header = () => {
   </Box>
   {isSearch && (
     <Suspense fallback = {<Backdrop open={true} />}>
-      <searchDialog/>
+      <SearchDialog/>
       </Suspense>
   )}
    {isNotification && (
