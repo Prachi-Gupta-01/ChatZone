@@ -17,3 +17,15 @@ export const sampleChats = [
     members: ["1", "2"],
   },
 ];
+export const sampleUsers = [
+  {
+    name: "John Doe",
+    _id: "1",
+    avatar: "https://www.w3schools.com/howto/img_avatar.png",
+  },
+  {
+    name: "Jane boe",
+    _id: "2",
+    avatar: "https://www.w3schools.com/howto/img_avatar.png",
+  },
+];
