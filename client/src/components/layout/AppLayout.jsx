@@ -3,6 +3,7 @@ import Header from './Header'
 import Title from '../shared/Title'
 import { Grid } from '@mui/material'
 import ChatList from '../specific/Chatlist'
+import Profile from '../specific/Profile'
 import { sampleChats } from '../../constants/sampleData'
 import { useParams } from 'react-router-dom'
 const AppLayout = () => (WrappedComponent) => {
@@ -39,7 +40,9 @@ const AppLayout = () => (WrappedComponent) => {
         display: {xs: "none", sm: "block"},
         padding:"2rem",
         bgcolor: "rgba(0,0,0,0.85)"
-     }}>Third</Grid>
+     }}>
+      <Profile/>
+     </Grid>
         
 
       </Grid>
