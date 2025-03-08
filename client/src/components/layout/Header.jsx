@@ -9,7 +9,7 @@ import { lazy } from 'react'
 const SearchDialog = lazy(() => import('../specific/Search'))
 
 const NotificationDialog = lazy(() => import('../specific/Notifications'))
-const NewGroupDialog = lazy(() => import('../dialogs/NewGroup'))
+const NewGroupDialog = lazy(() => import('../specific/NewGroup'))
 const Header = () => {
   const navigate = useNavigate();
 
