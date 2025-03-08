@@ -2,6 +2,7 @@ import React,{lazy, Suspense} from 'react'
 import {BrowserRouter ,Routes, Route} from 'react-router-dom'
 import ProtectRoute from './components/auth/ProtectRoute'
 import { LayoutLoader } from './components/layout/Loaders'
+import Dashboard from './pages/admin/Dashboard'
 
 
 const Home = lazy(() => import('./pages/Home'))
@@ -32,6 +33,9 @@ const App = () => {
         } />
 
         <Route path='/admin' element={<AdminLogin/>}/>
+        <Route path='/admin/dashboard' element={<Dashboard/>}/>
+
+
 
         <Route path="*" element={<NotFound/>} />
       </Routes>
