@@ -25,4 +25,4 @@ const sendToken = (res, user, code, message) => {
     user,
   });
 };
-export { connectDB, sendToken };
+export { connectDB, sendToken, cookieOptions };
