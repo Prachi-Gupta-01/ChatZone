@@ -5,6 +5,8 @@ import { AdminPanelSettings as AdminPanelSettingsIcon, Group as GroupIcon, Notif
 import moment from 'moment'
 import {SearchField,CurveButton} from "../../components/styles/StyledComponents"
 import { matBlack } from '../../constants/color'
+
+import { DoughnutChart ,LineChart} from '../../components/specific/Charts'
 const Dashboard = () => {
 const Appbar =(
   <Paper 
@@ -56,7 +58,17 @@ const Widgets=
       {Appbar}
 
       <Stack
-      direction={"row"} spacing={"2rem"} flexWrap={"wrap"}
+      direction={{
+        xs:"column",
+        lg:"row"
+      }} flexWrap={"wrap"} justifyContent={"center"}
+      alignItems={{
+        xs:"center",
+        lg:"stretch"
+      }}
+      sx={{
+        gap:"2rem"
+      }}
       >
         <Paper
         elevation={3}
@@ -65,11 +77,11 @@ const Widgets=
           borderRadius:"1rem",
           width:"100%",
           maxWidth:"45rem",
-           height:"25rem"
+          flex:1
         }}
         >
-          <Typography variant='h4' margin={"2rem 0"} >{""} Last Messages</Typography>
-          {"CHart"}
+          <Typography variant='h4' margin={"2rem 0"} > Last Messages</Typography>
+          <LineChart value={[23,56,33,67,33   ]}/>
         </Paper>
 
         <Paper
@@ -86,7 +98,7 @@ const Widgets=
           maxWidth:"25rem",
           height:"25rem"
         }}
-        >{"Donut Chart"}
+        ><DoughnutChart labels={["single chats","group chats"]} value={[23,66]}/>
 
         <Stack  
            position={"absolute"}
