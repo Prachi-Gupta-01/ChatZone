@@ -25,4 +25,8 @@ const sendToken = (res, user, code, message) => {
     user,
   });
 };
-export { connectDB, sendToken, cookieOptions };
+
+const emitEvent = (req, event, users, data) => {
+  console.log("emitting event", event);
+};
+export { connectDB, sendToken, cookieOptions, emitEvent };
