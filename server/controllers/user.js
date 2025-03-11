@@ -9,28 +9,30 @@ import { Request } from "../models/request.js";
 import { NEW_REQUEST, REFETCH_CHATS } from "../constants/events.js";
 import { getOtherMember } from "../lib/helper.js";
 //create a new user and save to database and save in cookie
-const newUser = async (req, res) => {
-  try {
-    const { name, username, password, bio } = req.body;
-    console.log("Request body:", req.body);
+const newUser = TryCatch(async (req, res, next) => {
+  const { name, username, password, bio } = req.body;
 
-    const avatar = {
-      public_id: "khf",
-      url: "khfkhea",
-    };
-    const user = await User.create({
-      name,
-      username,
-      password,
-      bio,
-      avatar,
-    });
+  const file = req.file;
 
-    sendToken(res, user, 201, "User Created");
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+  if (!file) return next(new ErrorHandler("Please Upload Avatar"));
+
+  const result = await uploadFilesToCloudinary([file]);
+
+  const avatar = {
+    public_id: result[0].public_id,
+    url: result[0].url,
+  };
+
+  const user = await User.create({
+    name,
+    bio,
+    username,
+    password,
+    avatar,
+  });
+
+  sendToken(res, user, 201, "User created");
+});
 const login = async (req, res, next) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username }).select("+password");
