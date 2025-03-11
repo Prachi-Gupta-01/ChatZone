@@ -60,6 +60,17 @@ const renameIdValidator = () => [
   param("id", "please enter chat Id").notEmpty(),
   body("name", "please enter new name").notEmpty(),
 ];
+const sendRequestValidator = () => [
+  body("userId", "please enter user Id").notEmpty(),
+];
+const acceptRequestValidator = () => [
+  body("requestId", "please enter Request Id").notEmpty(),
+  body("accept")
+    .notEmpty()
+    .withMessage(" please add accept ")
+    .isBoolean()
+    .withMessage("accept must be a boolean"),
+];
 
 export {
   addMemberValidator,
@@ -71,4 +82,6 @@ export {
   sendAttachmentsValidator,
   validateHandler,
   renameIdValidator,
+  sendRequestValidator,
+  acceptRequestValidator,
 };
