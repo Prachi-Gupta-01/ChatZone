@@ -1,17 +1,18 @@
+import { CHATZONE_TOKEN } from "../constants/config.js";
 import { ErrorHandler } from "../utils/utility.js";
 
 import jwt from "jsonwebtoken";
-const isAuthenticated = (req, res, next) => {
-  const token = req.cookies["chatzone-token"];
+const isAuthenticated = TryCatch((req, res, next) => {
+  const token = req.cookies[CHATZONE_TOKEN];
+  if (!token)
+    return next(new ErrorHandler("Please login to access this route", 401));
 
-  if (!token) {
-    return next(new ErrorHandler("PLease login to access this route", 401));
-  }
   const decodedData = jwt.verify(token, process.env.JWT_SECRET);
+
   req.user = decodedData._id;
 
   next();
-};
+});
 const adminOnly = (req, res, next) => {
   const token = req.cookies["chatzone-admin-token"];
 
