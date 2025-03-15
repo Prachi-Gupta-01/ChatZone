@@ -4,7 +4,7 @@ import { Chat } from "../models/chat.js";
 import {
   deletFilesFromCloudinary,
   emitEvent,
-  //uploadFilesToCloudinary,
+  uploadFilesToCloudinary,
 } from "../utils/features.js";
 import {
   ALERT,
