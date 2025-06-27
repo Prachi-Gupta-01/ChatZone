@@ -46,7 +46,29 @@ const getMyChats = TryCatch(async (req, res, next) => {
   const transformedChats = chats.map(({ _id, name, members, groupChat }) => {
     const otherMember = getOtherMember(members, req.user);
 
-    return {
+    const avatar = groupChat
+      ? members.slice(0, 3).map(({ avatar }) => avatar.url)
+      : otherMember
+      ? [otherMember.avatar.url]
+      : []; // Provide a fallback if otherMember is undefined
+
+    const transformedChat = {
+      _id,
+      groupChat,
+      avatar,
+      name: groupChat ? name : otherMember ? otherMember.name : "Unknown",
+      members: members.reduce((prev, curr) => {
+        if (curr._id.toString() !== req.user.toString()) {
+          prev.push(curr._id);
+        }
+        return prev;
+      }, []),
+    };
+
+    return transformedChat;
+  });
+
+  /*  return {
       _id,
       groupChat,
       avatar: groupChat
@@ -61,7 +83,7 @@ const getMyChats = TryCatch(async (req, res, next) => {
       }, []),
     };
   });
-
+*/
   return res.status(200).json({
     success: true,
     chats: transformedChats,
@@ -135,7 +157,7 @@ const addMembers = TryCatch(async (req, res, next) => {
 
 const removeMember = TryCatch(async (req, res, next) => {
   const { userId, chatId } = req.body;
-
+  console.log("Request Body:", req.body);
   const [chat, userThatWillBeRemoved] = await Promise.all([
     Chat.findById(chatId),
     User.findById(userId, "name"),

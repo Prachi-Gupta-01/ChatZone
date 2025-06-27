@@ -16,7 +16,8 @@ const registerValidator = () => [
   body("username", "please enter username").notEmpty(),
   body("bio", "please enter bio").notEmpty(),
   body("password", "please enter password").notEmpty(),
-  check("avatar", "please upload avatar").notEmpty(),
+
+  //check("avatar", "please upload avatar..").notEmpty(),
 ];
 
 const loginValidator = () => [
@@ -44,7 +45,8 @@ const addMemberValidator = () => [
 ];
 
 const removeMemberValidator = () => [
-  param("id", "please enter chat Id").notEmpty(),
+  body("chatId", "please enter chat Id").notEmpty(),
+  body("userId", "please enter user Id").notEmpty(),
 ];
 const sendAttachmentsValidator = () => [
   body("chatId", "Please Enter Chat ID").notEmpty(),
@@ -53,7 +55,7 @@ const sendAttachmentsValidator = () => [
 const chatIdValidator = () => [param("id", "please enter chat Id").notEmpty()];
 
 const renameIdValidator = () => [
-  param("id", "please enter chat Id").notEmpty(),
+  body("id", "please enter chat Id").notEmpty(),
   body("name", "please enter new name").notEmpty(),
 ];
 const sendRequestValidator = () => [

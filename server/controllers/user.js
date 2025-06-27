@@ -15,6 +15,8 @@ import { ErrorHandler } from "../utils/utility.js";
 
 // Create a new user and save it to the database and save token in cookie
 const newUser = TryCatch(async (req, res, next) => {
+  // Check the payload
+
   const { name, username, password, bio } = req.body;
 
   const file = req.file;
@@ -200,15 +202,21 @@ const getMyFriends = TryCatch(async (req, res) => {
     groupChat: false,
   }).populate("members", "name avatar");
 
-  const friends = chats.map(({ members }) => {
-    const otherUser = getOtherMember(members, req.user);
+  const friends = chats
+    .map(({ members }) => {
+      const otherUser = getOtherMember(members, req.user);
+      if (!otherUser) {
+        console.error("No other user found for chat");
+        return null; // Skip this chat if no other user is found
+      }
 
-    return {
-      _id: otherUser._id,
-      name: otherUser.name,
-      avatar: otherUser.avatar.url,
-    };
-  });
+      return {
+        _id: otherUser._id,
+        name: otherUser.name,
+        avatar: otherUser.avatar.url,
+      };
+    })
+    .filter((friend) => friend !== null); // Filter out null values;
 
   if (chatId) {
     const chat = await Chat.findById(chatId);
