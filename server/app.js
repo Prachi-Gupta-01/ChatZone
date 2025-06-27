@@ -32,7 +32,7 @@ dotenv.config({
 
 const mongoURI = process.env.MONGO_URI;
 const port = process.env.PORT || 3000;
-const envMode = process.env.NODE_ENV.trim() || "PRODUCTION";
+const envMode = (process.env.NODE_ENV || "PRODUCTION").trim();
 const adminSecretKey = process.env.ADMIN_SECRET_KEY || "adsasdsdfsdfsdfd";
 const userSocketIDs = new Map();
 const onlineUsers = new Set();
@@ -106,7 +106,7 @@ io.on("connection", (socket) => {
     try {
       await Message.create(messageForDB);
     } catch (error) {
-      throw new Error(error);
+      console.error("Error saving message:", error);
     }
   });
 

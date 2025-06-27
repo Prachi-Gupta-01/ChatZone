@@ -1,9 +1,12 @@
+const allowedOrigins = [
+  "https://chatzone-frontend-1.onrender.com",
+  "http://localhost:4173",
+];
+if (process.env.CLIENT_URL && process.env.CLIENT_URL.trim()) {
+  allowedOrigins.push(process.env.CLIENT_URL.trim());
+}
 const corsOptions = {
-  origin: [
-    "https://chatzone-frontend-1.onrender.com",
-    "http://localhost:4173",
-    process.env.CLIENT_URL,
-  ],
+  origin: allowedOrigins,
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 };
