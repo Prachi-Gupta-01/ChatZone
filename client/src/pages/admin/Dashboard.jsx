@@ -1,4 +1,4 @@
-import { useFetchData } from "6pp";
+import { useFetchData } from "../../hooks/hook";
 import {
   AdminPanelSettings as AdminPanelSettingsIcon,
   Group as GroupIcon,

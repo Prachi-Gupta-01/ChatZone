@@ -60,4 +60,42 @@ const useSocketEvents = (socket, handlers) => {
   }, [socket, handlers]);
 };
 
-export { useErrors, useAsyncMutation, useSocketEvents };
+
+const useFetchData = (url, cacheKey) => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url, {
+          method: "GET",
+          credentials: "include", // Ensure cookies are sent with the request
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} ${response.statusText}`);
+        }
+
+        const result = await response.json();
+        console.log("Fetched Data:", result); // Log the fetched data
+        setData(result);
+      } catch (err) {
+        console.error("Fetch Error:", err); // Log the error
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [url]);
+
+  return { loading, data, error };
+};
+
+
+
+
+export { useErrors, useAsyncMutation, useSocketEvents ,useFetchData};

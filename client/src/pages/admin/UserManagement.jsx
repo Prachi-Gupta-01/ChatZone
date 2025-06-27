@@ -1,4 +1,4 @@
-import { useFetchData } from "6pp";
+import { useFetchData } from "../../hooks/hook";
 import { Avatar, Skeleton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import AdminLayout from "../../components/layout/AdminLayout";

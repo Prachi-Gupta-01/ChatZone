@@ -88,7 +88,7 @@ const Header = () => {
                 display: { xs: "none", sm: "block" },
               }}
             >
-              Chattu
+              CHATZONE
             </Typography>
 
             <Box
