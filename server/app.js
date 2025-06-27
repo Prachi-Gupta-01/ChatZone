@@ -37,7 +37,7 @@ const adminSecretKey = process.env.ADMIN_SECRET_KEY || "adsasdsdfsdfsdfd";
 const userSocketIDs = new Map();
 const onlineUsers = new Set();
 
-connectDB(mongoURI);
+//connectDB(mongoURI);
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -143,7 +143,8 @@ io.on("connection", (socket) => {
 
 app.use(errorMiddleware);
 
-server.listen(port, () => {
+server.listen(port, async () => {
+  await connectDB(mongoURI);
   console.log(`Server is running on port ${port} in ${envMode} Mode`);
 });
 
