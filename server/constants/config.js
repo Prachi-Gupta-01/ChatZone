@@ -1,6 +1,6 @@
 const corsOptions = {
   origin: [
-    "http://localhost:5173",
+    " https://chatzone-frontend-1.onrender.com ",
     "http://localhost:4173",
     process.env.CLIENT_URL,
   ],
