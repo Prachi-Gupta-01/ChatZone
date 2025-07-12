@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userExists, userNotExists } from "./redux/reducers/auth";
 import { Toaster } from "react-hot-toast";
 import { SocketProvider } from "./socket";
+import AdminLayout from "./components/layout/AdminLayout";
 
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
@@ -62,11 +63,13 @@ const App = () => {
             }
           />
 
-          <Route path="/admin" element={<div>Test Admin Page</div>} />
-          <Route path="/admin/dashboard" element={<Dashboard />} />
-          <Route path="/admin/users" element={<UserManagement />} />
-          <Route path="/admin/chats" element={<ChatManagement />} />
-          <Route path="/admin/messages" element={<MessagesManagement />} />
+                  <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminLogin />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="users" element={<UserManagement />} />
+          <Route path="chats" element={<ChatManagement />} />
+          <Route path="messages" element={<MessagesManagement />} />
+        </Route>
 
           <Route path="*" element={<NotFound />} />
         </Routes>
