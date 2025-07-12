@@ -62,7 +62,7 @@ const App = () => {
             }
           />
 
-          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin" element={<div>Test Admin Page</div>} />
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/users" element={<UserManagement />} />
           <Route path="/admin/chats" element={<ChatManagement />} />
