@@ -26,10 +26,12 @@ const authSlice = createSlice({
     builder
       .addCase(adminLogin.fulfilled, (state, action) => {
         state.isAdmin = true;
+        state.loader = false;
         toast.success(action.payload);
       })
       .addCase(adminLogin.rejected, (state, action) => {
         state.isAdmin = false;
+        state.loader = false;
         toast.error(action.error.message);
       })
       .addCase(getAdmin.fulfilled, (state, action) => {
@@ -38,16 +40,20 @@ const authSlice = createSlice({
         } else {
           state.isAdmin = false;
         }
+        state.loader = false;
       })
       .addCase(getAdmin.rejected, (state, action) => {
         state.isAdmin = false;
+        state.loader = false;
       })
       .addCase(adminLogout.fulfilled, (state, action) => {
         state.isAdmin = false;
+        state.loader = false;
         toast.success(action.payload);
       })
       .addCase(adminLogout.rejected, (state, action) => {
         state.isAdmin = true;
+        state.loader = false;
         toast.error(action.error.message);
       });
   },
