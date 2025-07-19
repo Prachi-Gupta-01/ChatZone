@@ -24,9 +24,9 @@ const AdminLogin = () => {
     dispatch(adminLogin(secretKey.value));
   };
 
-  useEffect(() => {
+ /* useEffect(() => {
     dispatch(getAdmin());
-  }, [dispatch]);
+  }, [dispatch]);*/
 
   if (isAdmin) return <Navigate to="/admin/dashboard" />;
 
