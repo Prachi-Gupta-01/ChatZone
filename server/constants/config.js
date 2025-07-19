@@ -6,7 +6,13 @@ if (process.env.CLIENT_URL && process.env.CLIENT_URL.trim()) {
   allowedOrigins.push(process.env.CLIENT_URL.trim());
 }
 const corsOptions = {
-  origin: allowedOrigins,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 };
