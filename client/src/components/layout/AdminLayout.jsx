@@ -144,7 +144,8 @@ const location = useLocation();
         <Outlet/>
       </Grid>
 
-      <Drawer open={isMobile} onClose={handleClose}>
+      <Drawer open={isMobile} onClose={handleClose}
+      sx={{ display: { xs: "block", md: "none" } }}>
         <Sidebar w="50vw" />
       </Drawer>
     </Grid>

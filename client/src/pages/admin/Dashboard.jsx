@@ -33,6 +33,7 @@ const Dashboard = () => {
   );
 
   const { stats } = data || {};
+  if (!stats) return <Typography>No Stats Found</Typography>;
 
   useErrors([
     {
