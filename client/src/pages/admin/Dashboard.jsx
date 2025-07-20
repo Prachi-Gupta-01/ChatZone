@@ -33,7 +33,7 @@ const Dashboard = () => {
   );
 
   const { stats } = data || {};
-  if (!stats) return <Typography>No Stats Found</Typography>;
+ 
 
   useErrors([
     {
@@ -41,7 +41,7 @@ const Dashboard = () => {
       error: error,
     },
   ]);
-
+ if (!stats) return <Typography>No Stats Found</Typography>;
   const Appbar = (
     <Paper
       elevation={3}

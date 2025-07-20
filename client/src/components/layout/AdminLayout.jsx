@@ -103,7 +103,7 @@ const Sidebar = ({ w = "100%" }) => {
 };
 
 const AdminLayout = ( ) => {
-  const { isAdmin } = useSelector((state) => state.auth);
+  const { isAdmin,loader } = useSelector((state) => state.auth);
 const location = useLocation(); 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -111,6 +111,7 @@ const location = useLocation();
 
   const handleClose = () => setIsMobile(false);
    const isLoginPage = location.pathname === "/admin" || location.pathname === "/admin/";
+   if(loader) return <Typography>Loading Admin Panel...</Typography>
   if (!isAdmin && !isLoginPage) return <Navigate to="/admin" />;
 
   return (
